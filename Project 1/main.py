@@ -8,8 +8,8 @@ while True:
             todo = input("Enter a todo: ")
             todos.append(todo)
         case "show":
-            for item in todos:
-                print(item)
+            for index, item in enumerate(todos):
+                print(index,"-", item)
         case "edit":
             number = int(input("Enter the item to edit: "))
             number = number - 1
@@ -20,3 +20,4 @@ while True:
         case _:
             print("Kindly input either of the arguments (add, show or exit). Thanks")
 print("bye!")
+
