@@ -1,3 +1,9 @@
+def get_todos(filepath):
+    with open(filepath, 'r') as file_local:
+        todos_local = file_local.readlines()
+        return todos_local
+
+
 while True:
     user_action = input("Type add, show, edit, complete or exit: ")
     user_action = user_action.strip()
@@ -6,8 +12,7 @@ while True:
 
         todo = user_action[4:]
 
-        with open('todos.txt', 'r') as file:
-            todos = file.readlines()  # this will return a list of item in the file as a list of items.
+        todos = get_todos('todos.txt')
 
         todos.append(todo + "\n")
 
@@ -15,11 +20,12 @@ while True:
             file.writelines(todos)
 
     elif user_action.startswith("show"):
-        with open('todos.txt', 'r') as file:
-            todos = file.readlines()  # file.readlines always return a list generated from the external text file. file, read will return string if it was used.i.e todos is a list in this case.
+
+        todos = get_todos('todos.txt')
 
         for index, item in enumerate(todos):
-            item = item.strip("\n")  # This is used to remove the \n at added to the todos list, this is neccessary because if not added the list will have unneccsary line brake. you can remove it to see the output.
+            item = item.strip(
+                "\n")  # This is used to remove the \n at added to the todos list, this is neccessary because if not added the list will have unneccsary line brake. you can remove it to see the output.
 
             row = F"{index + 1}-{item}"
             print(row)
@@ -29,8 +35,7 @@ while True:
 
             number = number - 1
 
-            with open('todos.txt', 'r') as file:
-                todos = file.readlines()
+            todos = get_todos('todos.txt')
 
             new_todo = input("what is the new item to be added: ")
             todos[number] = new_todo + '\n'
@@ -45,8 +50,8 @@ while True:
     elif user_action.startswith("complete"):
         try:
             number = int(user_action[9:])
-            with open('todos.txt', 'r') as file:
-                todos = file.readlines()
+
+            todos = get_todos('todos.txt')
 
             index = number - 1
             todo_to_remove = todos[index].strip('\n')
