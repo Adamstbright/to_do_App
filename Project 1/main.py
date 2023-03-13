@@ -1,7 +1,10 @@
-#from functions import get_todos, write_todos  # this is a way functions can be imported from another file. Functions are imported from function.py file.
-
+# from functions import get_todos, write_todos
 
 import functions  # another way of importing functions.
+import time
+
+now = time.strftime("%b %d, %Y %H:%M:%S")
+print("It is", now)
 
 while True:
     user_action = input("Type add, show, edit, complete or exit: ")
@@ -22,7 +25,8 @@ while True:
         todos = functions.get_todos()
 
         for index, item in enumerate(todos):
-            item = item.strip("\n")  # This is used to remove the \n at added to the todos list, this is neccessary because if not added the list will have unneccsary line brake. you can remove it to see the output.
+            item = item.strip("\n")  # This is used to remove the \n at added to the todos list, this is necessary
+            # because if not added the list will have unnecessary line brake. you can remove it to see the output.
 
             row = F"{index + 1}-{item}"
             print(row)
